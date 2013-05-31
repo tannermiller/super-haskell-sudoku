@@ -6,3 +6,4 @@ cabal-dev
 *.chs.h
 .virthualenv
 .hsenv_super-haskell-sudoku
+sudoku
