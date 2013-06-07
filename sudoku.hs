@@ -5,8 +5,8 @@ import System.IO
 main :: IO ()
 main = do
     putStrLn "Hello, World"
-    data_puzzle <- readFile "test.dat"
-    puzzle <- return $ loadPuzzle data_puzzle
+    puzzle <- readFile "test.dat"
+    puzzle <- return $ load puzzle
     putStrLn "Done"
 
 -- Define a puzzle as a 9x9 array
@@ -16,6 +16,6 @@ puzzle = array ((0,0), (8,8))
 locList = [(x,y) | x <- [0..8], y <- [0..8]]
 
 -- Load the puzzle from a String
-loadPuzzle :: String -> Array (Int, Int) Int
-loadPuzzle = puzzle . zip locList . map digitToInt . filter ('\n' /=)
+load :: String -> Array (Int, Int) Int
+load = puzzle . zip locList . map digitToInt . filter ('\n' /=)
 
