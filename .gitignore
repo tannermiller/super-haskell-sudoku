@@ -4,6 +4,7 @@ cabal-dev
 *.hi
 *.chi
 *.chs.h
+*.swp
 .virthualenv
 .hsenv_super-haskell-sudoku
 sudoku
