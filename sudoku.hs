@@ -25,6 +25,7 @@ load = puzzle . zipLoc . mapInt . mapBlanks . filter ('\n' /=)
     mapInt = map digitToInt
     mapBlanks = map (\x -> if x == ' ' then '0' else x)
 
+-- TODO: generalize getRow and getCol
 -- Get all the values in a row
 getRow :: Array (Int, Int) Int -> Int -> [Int]
 getRow p row = map clean $ filter check $ assocs p
