@@ -8,3 +8,4 @@ cabal-dev
 .virthualenv
 .hsenv_super-haskell-sudoku
 sudoku
+test.dat
