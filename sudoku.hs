@@ -8,8 +8,6 @@ main = do
     putStrLn "Hello, World"
     puz <- readFile "test.dat"
     puz <- return $ load puz
-    rows <- return $ getRow puz 0
-    putStrLn $ show rows
     putStrLn "Done"
 
 -- Define a puzzle as a 9x9 array
@@ -35,7 +33,11 @@ getRow p row = map clean $ filter check $ assocs p
     clean = fst . fst
 
 -- Get all the values in a column
---getCol :: Array (Int, Int) Int -> Int -> [Int]
+getCol :: Array (Int, Int) Int -> Int -> [Int]
+getCol p col = map clean $ filter check $ assocs p
+  where
+    check ((_, y), _) = y == col
+    clean = snd . fst
 
 -- Get all the values in a box
 --getBox :: Array (Int, Int) Int -> Int -> [Int]
