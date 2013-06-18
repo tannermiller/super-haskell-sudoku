@@ -11,34 +11,31 @@ main = do
     putStrLn "Done"
 
 -- Define a puzzle as a 9x9 array
-puzzle :: [((Int, Int), e)] -> Array (Int, Int) e
-puzzle = array ((0,0), (8,8))
+puzzle :: [((Int,Int), e)] -> Array (Int,Int) e
+puzzle = array ((0,0),(8,8))
 
 -- list of array locations
 locList = [(x,y) | x <- [0..8], y <- [0..8]]
 
 -- Load the puzzle from a String
-load :: String -> Array (Int, Int) Int
+load :: String -> Array (Int,Int) Int
 load = puzzle . zipLoc . mapInt . mapBlanks . filter ('\n' /=)
   where
     zipLoc = zip locList
     mapInt = map digitToInt
     mapBlanks = map (\x -> if x == ' ' then '0' else x)
 
--- TODO: generalize getRow and getCol
 -- Get all the values in a row
-getRow :: Array (Int, Int) Int -> Int -> [Int]
-getRow p row = map clean $ filter check $ assocs p
+getRow :: Array (Int,Int) Int -> Int -> [Int]
+getRow p row = map snd $ filter check $ assocs p
   where
-    check ((x, _), _) = x == row
-    clean = fst . fst
+    check ((x, _),_) = x == row
 
 -- Get all the values in a column
-getCol :: Array (Int, Int) Int -> Int -> [Int]
-getCol p col = map clean $ filter check $ assocs p
+getCol :: Array (Int,Int) Int -> Int -> [Int]
+getCol p col = map snd $ filter check $ assocs p
   where
-    check ((_, y), _) = y == col
-    clean = snd . fst
+    check ((_, y),_) = y == col
 
 -- Get all the values in a box
 --getBox :: Array (Int, Int) Int -> Int -> [Int]
