@@ -1,3 +1,5 @@
+module Main where
+
 import Data.Array (Array, assocs, array)
 import Data.Char (digitToInt)
 import System.IO (putStrLn, readFile)
