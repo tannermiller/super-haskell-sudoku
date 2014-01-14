@@ -16,6 +16,17 @@ build-type:          Simple
 cabal-version:       >=1.8
 
 executable super-haskell-sudoku
-  main-is:             Main.hs
-  -- other-modules:       
-  build-depends:       array, base ==4.6.*
+  main-is:           Main.hs
+  -- other-modules:     
+  build-depends:     array, base ==4.6.*
+
+library
+  exposed-modules: Sudoku
+  build-depends:     array, base ==4.6.*
+
+test-suite sudoku
+  type:              exitcode-stdio-1.0
+  main-is:           sudoku.hs
+  build-depends:     base ==4.6.*, HUnit, super-haskell-sudoku
+  hs-source-dirs:    tests
+
