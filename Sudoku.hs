@@ -1,17 +1,15 @@
-module Main where
+module Sudoku
+( puzzle
+, locList
+, load
+, getRow
+, getCol
+, getBoxRow
+) where
 
 import Data.Array (Array, assocs, array)
 import Data.Char (digitToInt)
 import System.IO (putStrLn, readFile)
-
--- TODO: add tests
-main :: IO ()
-main = do
-    putStrLn "Hello, World"
-    puz <- readFile "test.dat"
-    puz <- return $ load puz
-    putStrLn $ show (getBoxCol (0,0) (getBoxRow puz (0,0)))
-    putStrLn "Done"
 
 -- Define a puzzle as a 9x9 array
 puzzle :: [((Int,Int), e)] -> Array (Int,Int) e
@@ -42,17 +40,18 @@ getCol p col = map snd $ filter check $ assocs p
 --getBox :: Array (Int,Int) Int -> (Int,Int) -> [Int]
 --getBox p loc = 
 
+-- Get the 3 rows around the location.
 getBoxRow :: Array (Int,Int) Int -> (Int,Int) -> [[Int]]
 getBoxRow p loc = case mod x 3 of 0 -> [getRow p i | i<-[x,x+1,(x+2)]]
                                   1 -> [getRow p i | i<-[(x-1),x,(x+1)]]
                                   2 -> [getRow p i | i<-[(x-2),(x-1),x]]
   where x = fst loc
 
-getBoxCol :: (Int,Int) -> [[Int]] -> [[Int]]
-getBoxCol loc rows = map (map snd) (map colFilter [zip [0..] row | row<-rows])
-  where
-    colFilter = let y = snd loc in
-                filter (\(i,x) -> 
+--getBoxCol :: (Int,Int) -> [[Int]] -> [[Int]]
+--getBoxCol loc rows = map (map snd) (map colFilter [zip [0..] row | row<-rows])
+--  where
+--    colFilter = let y = snd loc in
+--                filter (\(i,x) -> 
 
 --isValid :: Array (Int, Int) Int -> (Int, Int) -> Int -> Bool
 --isValid puzzle loc value = 
