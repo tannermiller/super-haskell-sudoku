@@ -1,15 +1,14 @@
+{-# LANGUAGE TemplateHaskell #-}
 module Main where
 
-import Test.HUnit
 import Sudoku
+import Test.Framework.Providers.HUnit
+import Test.Framework.TH
+import Test.Framework
+import Test.HUnit hiding (test)
 
-test1 = TestCase $ assertEqual "test locList" [(x,y) | x <- [0..8], y <- [0..8]] locList
-
-tests = TestList [TestLabel "locList" test1]
+case_locList = [(x,y) | x <- [0..8], y <- [0..8]] @=? locList
 
 main :: IO ()
-main = do
-    counts <- runTestTT tests
-    --putStr $ showCounts counts
-    return ()
+main = defaultMain [$testGroupGenerator]
 

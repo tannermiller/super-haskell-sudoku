@@ -27,6 +27,11 @@ library
 test-suite sudoku
   type:              exitcode-stdio-1.0
   main-is:           sudoku.hs
-  build-depends:     base ==4.6.*, HUnit, super-haskell-sudoku
   hs-source-dirs:    tests
+  build-depends:     base                   ==4.6.*,
+                     HUnit                  >=1.2,
+                     super-haskell-sudoku, 
+                     test-framework         >=0.6,
+                     test-framework-hunit   >=0.2,
+                     test-framework-th      >=0.2
 
